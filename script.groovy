@@ -4,9 +4,9 @@ def buildJar(){
 }
 def buildImg(){
     echo "building img"
-    withCredentials([usernamePassword(credentialId:'docker-hub',usernameVariable:'USER', passwordVariable: 'PASS')]){
+    withCredentials([usernamePassword(credentialsId:'docker-hub', passwordVariable: 'PASS',usernameVariable:'USER')]){
         sh "docker build -t ashutoshbhardwaz/maven-build-app:2.1 ."
-        sh "echo $PASS | docker login -u $USER --password-stdin "
+        sh "set +x && echo $PASS | docker login -u $USER --password-stdin "
         sh "docker push ashutoshbhardwaz/maven-build-app:2.1  "
     }
 }
