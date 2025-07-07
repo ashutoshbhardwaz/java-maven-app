@@ -13,33 +13,30 @@ pipeline{
             }
         }
         stage('build jar'){
-            steps{
-                when{
-                        expression{
-                            env.BRANCH_NAME =='master'}
+             when{
+                        expression{env.BRANCH_NAME =='master'}
                     }
+            steps{
                 script{
                     gv.buildJar()
                 }
             }
         }
         stage('build img'){
-            steps{
-                 when{
-                        expression{
-                            env.BRANCH_NAME =='master'}
+             when{
+                        expression{env.BRANCH_NAME =='master'}
                     }
+            steps{
                 script{
                     gv.buildImg()
                 }
             }
         }
         stage('deploy'){
-            steps{
-                 when{
-                        expression{
-                            env.BRANCH_NAME =='master'}
+             when{
+                        expression{env.BRANCH_NAME =='master'}
                     }
+            steps{
                 script{
                     gv.deploy()
                 }
